@@ -17,6 +17,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	compile('com.linecorp.bot:line-bot-spring-boot:1.12.0')
 }
 
 test {
