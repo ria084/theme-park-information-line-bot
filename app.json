@@ -1,6 +1,6 @@
 {
-  "name": "echo bot - LINE Messaging API",
-  "description": "This is a sample application for the LINE Messaging API",
+  "name": "park information bot",
+  "description": "This is an application for check the park information in Maihama",
   "keywords": ["chatbot", "line", "java"],
   "env": {
     "LINE_BOT_CHANNEL_TOKEN": {
