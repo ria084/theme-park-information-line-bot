@@ -20,6 +20,11 @@ public class ThemeParkInformationLineBotApplication {
 	@EventMapping
 	public TextMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
 		System.out.println("event: " + event);
+
+		if(event.getReplyToken().matches("(.)\\1+\\{32}")){
+			return new TextMessage("OK");
+		}
+
 		return new TextMessage(event.getMessage().getText());
 	}
 
