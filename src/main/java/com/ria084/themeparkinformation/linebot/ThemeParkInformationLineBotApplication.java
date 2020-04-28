@@ -6,12 +6,17 @@ import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+import com.ria084.themeparkinformation.linebot.service.ThemeParkInformationResponseService;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @LineMessageHandler
+@AllArgsConstructor
 public class ThemeParkInformationLineBotApplication {
+
+	private final ThemeParkInformationResponseService service;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ThemeParkInformationLineBotApplication.class, args);
@@ -20,12 +25,7 @@ public class ThemeParkInformationLineBotApplication {
 	@EventMapping
 	public TextMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
 		System.out.println("event: " + event);
-
-		if(event.getReplyToken().matches("(.)\\1+\\{32}")){
-			return new TextMessage("OK");
-		}
-
-		return new TextMessage(event.getMessage().getText());
+		return service.generateResponse(event.getMessage().getText());
 	}
 
 	@EventMapping
