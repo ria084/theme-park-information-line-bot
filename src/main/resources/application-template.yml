@@ -1,0 +1,2 @@
+line.bot:
+  handler.path: /callback
