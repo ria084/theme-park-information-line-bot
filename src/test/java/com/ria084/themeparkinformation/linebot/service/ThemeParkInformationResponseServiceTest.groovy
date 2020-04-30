@@ -62,10 +62,18 @@ class ThemeParkInformationResponseServiceTest extends spock.lang.Specification {
 
         then:
         response.text.contains(expectDateText)
-
     }
 
     def "generateResponse_MM月DD日"() {
+        setup:
+        String requestText = "2月4日の陸"
+        LocalDate expectDate = service.getTargetDate(2, 4)
+        String expectDateText = String.format("%d年%d月%d日", expectDate.getYear(), expectDate.getMonthValue(), expectDate.getDayOfMonth())
 
+        when:
+        TextMessage response = service.generateResponse(requestText)
+
+        then:
+        response.text.contains(expectDateText)
     }
 }

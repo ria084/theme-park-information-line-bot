@@ -51,6 +51,7 @@ public class ThemeParkInformationResponseService {
         // TODO テキストの取得
         String responseText = getStringTargetDate(responseModel.getTargetDate()) + "の情報です";
 
+
         return new TextMessage(responseText);
     }
 
@@ -78,19 +79,8 @@ public class ThemeParkInformationResponseService {
             return true;
         }
 
+        // フリーテキストから正規表現で日付を抜き出し
         try {
-
-            // 日付形式チェック(MMdd)
-            Pattern withoutSlashPattern = Pattern.compile(RequestTextConstants.MMDD_PATTERN);
-            Matcher withoutSlash = withoutSlashPattern.matcher(requestText);
-            if (withoutSlash.find()) {
-                int month = Integer.parseInt(withoutSlash.group(1));
-                int day = Integer.parseInt(withoutSlash.group(2));
-
-                responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
-                return true;
-            }
-
             // 日付形式チェック(MM/dd)
             Pattern withSlashPattern = Pattern.compile(RequestTextConstants.MMDD_WITHSLASH_PATTERN);
             Matcher withSlash = withSlashPattern.matcher(requestText);
@@ -104,7 +94,7 @@ public class ThemeParkInformationResponseService {
 
             // 日付形式チェック(m月n日)
             Pattern jpPattern = Pattern.compile(RequestTextConstants.MMDD_JP_PATTERN);
-            Matcher jp = withSlashPattern.matcher(requestText);
+            Matcher jp = jpPattern.matcher(requestText);
             if (jp.find()) {
                 int month = Integer.parseInt(jp.group(1));
                 int day = Integer.parseInt(jp.group(2));
@@ -113,10 +103,9 @@ public class ThemeParkInformationResponseService {
                 return true;
             }
 
-            // TODO 日付形式チェック 年指定の追加, 書式パターンの追加
+            // TODO 日付形式チェック 年指定の追加
             // 日付形式チェック(x年y月z日)
             // 日付形式チェック(uuuu/MM/dd)
-            // 日付形式チェック(uuuuMMdd)
         } catch (IllegalStateException e) {
             log.warn("日付フォーマットエラーです。");
             throw new IllegalArgumentException("日付フォーマットが正しくありません。MM/DD,MMDD,MM月DD日のいづれかの形式で指定してください。", e);

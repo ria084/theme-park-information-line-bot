@@ -24,8 +24,6 @@ public class RequestTextConstants {
 
     public static final DateTimeFormatter UUUUMMDD_FORMAT = DateTimeFormatter.ofPattern("uuuuMMdd").withResolverStyle(ResolverStyle.STRICT);
 
-    public static final String MMDD_PATTERN = "([0-9]{1,2}|1[0-2])(3[01]|[12][0-9]|[0-9]{1,2})";
-
     public static final String MMDD_WITHSLASH_PATTERN = "([0-9]{1,2}|1[0-2])/(3[01]|[12][0-9]|[0-9]{1,2})";
 
     public static final String MMDD_JP_PATTERN = "([0-9]{1,2}|1[0-2])月(3[01]|[12][0-9]|[0-9]{1,2})日";
