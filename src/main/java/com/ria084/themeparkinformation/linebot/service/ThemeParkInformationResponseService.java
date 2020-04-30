@@ -4,16 +4,20 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.ria084.themeparkinformation.linebot.constants.RequestTextConstants;
 import com.ria084.themeparkinformation.linebot.domain.model.ResponseModel;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 送信されたテキストに応じた情報の返却を行うクラス
  */
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ThemeParkInformationResponseService {
     private final ResponseModel responseModel;
 
@@ -45,9 +49,9 @@ public class ThemeParkInformationResponseService {
         }
 
         // TODO テキストの取得
+        String responseText = getStringTargetDate(responseModel.getTargetDate()) + "の情報です";
 
-
-        return new TextMessage(responseModel.getTargetDate() + "の情報です");
+        return new TextMessage(responseText);
     }
 
     private boolean validationRequest(String requestText) {
@@ -74,42 +78,54 @@ public class ThemeParkInformationResponseService {
             return true;
         }
 
-        // 日付形式チェック(MM/dd)
-        if (RequestTextConstants.MMDD_WITHSLASH_PATTERN.matcher(requestText).find()) {
-            int month = Integer.parseInt(RequestTextConstants.MMDD_WITHSLASH_PATTERN.matcher(requestText).group(1));
-            int day = Integer.parseInt(RequestTextConstants.MMDD_WITHSLASH_PATTERN.matcher(requestText).group(2));
+        try {
 
-            responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
-            return true;
+            // 日付形式チェック(MMdd)
+            Pattern withoutSlashPattern = Pattern.compile(RequestTextConstants.MMDD_PATTERN);
+            Matcher withoutSlash = withoutSlashPattern.matcher(requestText);
+            if (withoutSlash.find()) {
+                int month = Integer.parseInt(withoutSlash.group(1));
+                int day = Integer.parseInt(withoutSlash.group(2));
+
+                responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
+                return true;
+            }
+
+            // 日付形式チェック(MM/dd)
+            Pattern withSlashPattern = Pattern.compile(RequestTextConstants.MMDD_WITHSLASH_PATTERN);
+            Matcher withSlash = withSlashPattern.matcher(requestText);
+            if (withSlash.find()) {
+                int month = Integer.parseInt(withSlash.group(1));
+                int day = Integer.parseInt(withSlash.group(2));
+
+                responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
+                return true;
+            }
+
+            // 日付形式チェック(m月n日)
+            Pattern jpPattern = Pattern.compile(RequestTextConstants.MMDD_JP_PATTERN);
+            Matcher jp = withSlashPattern.matcher(requestText);
+            if (jp.find()) {
+                int month = Integer.parseInt(jp.group(1));
+                int day = Integer.parseInt(jp.group(2));
+
+                responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
+                return true;
+            }
+
+            // TODO 日付形式チェック 年指定の追加, 書式パターンの追加
+            // 日付形式チェック(x年y月z日)
+            // 日付形式チェック(uuuu/MM/dd)
+            // 日付形式チェック(uuuuMMdd)
+        } catch (IllegalStateException e) {
+            log.warn("日付フォーマットエラーです。");
+            throw new IllegalArgumentException("日付フォーマットが正しくありません。MM/DD,MMDD,MM月DD日のいづれかの形式で指定してください。", e);
         }
-
-        // 日付形式チェック(MMdd)
-        if (RequestTextConstants.MMDD_WITHSLASH_PATTERN.matcher(requestText).find()) {
-            int month = Integer.parseInt(RequestTextConstants.MMDD_PATTERN.matcher(requestText).group(1));
-            int day = Integer.parseInt(RequestTextConstants.MMDD_PATTERN.matcher(requestText).group(2));
-
-            responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
-            return true;
-        }
-
-        // 日付形式チェック(m月n日)
-        if (RequestTextConstants.MMDD_WITHSLASH_PATTERN.matcher(requestText).find()) {
-            int month = Integer.parseInt(RequestTextConstants.MMDD_JP_PATTERN.matcher(requestText).group(1));
-            int day = Integer.parseInt(RequestTextConstants.MMDD_JP_PATTERN.matcher(requestText).group(2));
-
-            responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
-            return true;
-        }
-
-        // TODO 日付形式チェック 年指定の追加, 書式パターンの追加
-        // 日付形式チェック(x年y月z日)
-        // 日付形式チェック(uuuu/MM/dd)
-        // 日付形式チェック(uuuuMMdd)
 
         return false;
     }
 
-    private LocalDate getTargetDate(int month, int day) {
+    protected LocalDate getTargetDate(int month, int day) {
         // いったん現在日の年で生成
         LocalDate tmpDate = LocalDate.of(YearMonth.now().getYear(), month, day);
 
@@ -120,6 +136,20 @@ public class ThemeParkInformationResponseService {
 
         // 現在と同じもしくは未来の場合、生成した日付で返却
         return tmpDate;
+
+    }
+
+    /**
+     * uuuuMMdd形式の日付文字列をuuuu年MM月dd日の形式で返却する
+     *
+     * @param date 対象の日付。フォーマットはuuuuMMdd
+     * @return 対象の日付。uuuu年MM月dd日の形式。
+     */
+    private String getStringTargetDate(String date) {
+
+        LocalDate targetDate = LocalDate.parse(date, RequestTextConstants.UUUUMMDD_FORMAT);
+
+        return targetDate.getYear() + "年" + targetDate.getMonthValue() + "月" + targetDate.getDayOfMonth() + "日";
 
     }
 }
