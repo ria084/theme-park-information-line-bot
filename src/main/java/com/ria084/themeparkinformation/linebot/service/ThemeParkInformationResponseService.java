@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 @Slf4j
 public class ThemeParkInformationResponseService {
     private final RequestModel requestModel;
+    private final UtilResources utilResources;
 
     public TextMessage generateResponse(String requestText) {
         boolean isLand;
@@ -53,7 +54,7 @@ public class ThemeParkInformationResponseService {
         // ファイル読み込み jsonをオブジェクト化
         Map<String, ResponseModel.Detail> response;
         try {
-            String openingHours = UtilResources.getOpeningHours(isLand, isSea);
+            String openingHours = utilResources.getOpeningHours(isLand, isSea);
             ObjectMapper mapper = new ObjectMapper();
 
             response = mapper.readValue(openingHours, new TypeReference<HashMap<String, ResponseModel.Detail>>() {
