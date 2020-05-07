@@ -31,8 +31,9 @@ public class UtilResources {
         }
 
         Resource resource = resourceLoader.getResource("classpath:" + filePath.toString());
+        log.info("リソース取得");
         File file = resource.getFile();
-
+        log.info("filepath:" + file.getPath());
         return new String(new FileInputStream(file).readAllBytes(), StandardCharsets.UTF_8);
     }
 }
