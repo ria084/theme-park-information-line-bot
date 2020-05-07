@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,58 +27,61 @@ import java.util.regex.Pattern;
 @AllArgsConstructor
 @Slf4j
 public class ThemeParkInformationResponseService {
-    private final ResponseModel responseModel;
     private final RequestModel requestModel;
 
     public TextMessage generateResponse(String requestText) {
-        boolean isLand = false;
-        boolean isSea = false;
+        boolean isLand;
+        boolean isSea;
 
         // 必須要素が入っているか確認する(日付設定も含む)
         if (!validationRequest(requestText)) {
-            // 指定がない場合、今日の陸情報を返す
-            return new TextMessage("今日の情報です");
+            // 指定がない場合は陸情報を返す
+            isLand = true;
         }
 
         // 陸判定
-        for (String text : RequestTextConstants.LAND_KEY) {
-            if (requestText.contains(text)) {
-                isLand = true;
-                break;
-            }
-        }
+        isLand = isContains(requestText, RequestTextConstants.LAND_KEY);
 
         // 海判定
-        for (String text : RequestTextConstants.SEA_KEY) {
-            if (requestText.contains(text)) {
-                isSea = true;
-                break;
-            }
+        isSea = isContains(requestText, RequestTextConstants.SEA_KEY);
+
+        String targetPark = "TDL";
+        if (!isLand && isSea) {
+            targetPark = "TDS";
         }
 
-        String responseText = "";
+        // ファイル読み込み jsonをオブジェクト化
+        Map<String, ResponseModel.Detail> response;
         try {
-            String openingHours = UtilResources.getOpeningHours(false, true);
+            String openingHours = UtilResources.getOpeningHours(isLand, isSea);
             ObjectMapper mapper = new ObjectMapper();
 
-            Map<String, ResponseModel.Detail> response = mapper.readValue(openingHours, new TypeReference<HashMap<String, ResponseModel.Detail>>(){});
-            ResponseModel.Detail timeDetail = response.get(requestModel.getTargetDate());
-
-            // 備考欄が空なら通常通り開園/閉園時刻を通知
-            if (timeDetail.getNote().isEmpty()){
-                responseText = getStringTargetDate(requestModel.getTargetDate()) + "の運営時間は" + timeDetail.getOpenTime() + "～" + timeDetail.getCloseTime() + "です。";
-            } else {
-                // 備考欄の記載があれば、注意事項を送付
-                responseText = getStringTargetDate(requestModel.getTargetDate()) + "は" + timeDetail.getNote() + "です。詳細な情報については公式サイトを確認してください。";
-            }
+            response = mapper.readValue(openingHours, new TypeReference<HashMap<String, ResponseModel.Detail>>() {
+            });
         } catch (IOException e) {
-            log.info("err");
-            // TODO 例外処理
+            log.error("設定ファイルの読み込みに失敗しました。 message: " + e.getMessage());
+            return new TextMessage(RequestTextConstants.INNNER_ERROR);
         }
 
-        return new TextMessage(responseText);
+        ResponseModel.Detail timeDetail = response.get(requestModel.getTargetDate());
+
+        // 備考欄が空なら通常通り開園/閉園時刻を通知
+        if (timeDetail.getNote().isEmpty()) {
+            return new TextMessage(String.format(RequestTextConstants.NORMAL_OPERATION, getStringTargetDate(requestModel.getTargetDate()), targetPark, timeDetail.getOpenTime(), timeDetail.getCloseTime()));
+        }
+        // 備考欄の記載があれば、注意事項を送付
+        return new TextMessage(String.format(RequestTextConstants.SPECIAL_OPERATION, getStringTargetDate(requestModel.getTargetDate()), targetPark, timeDetail.getNote()));
+
     }
 
+    /**
+     * リクエストのテキスト内容のチェック・設定を行う
+     * <p>
+     * 対象日付をチェックし、取得、設定を行う
+     *
+     * @param requestText リクエストのテキスト内容
+     * @return 日付設定がある場合はtrue, ない場合はfalse
+     */
     private boolean validationRequest(String requestText) {
 
         // 日付を示す文字列が入っていれば有効
@@ -133,14 +135,27 @@ public class ThemeParkInformationResponseService {
             // 日付形式チェック(uuuu/MM/dd)
         } catch (IllegalStateException e) {
             log.warn("日付フォーマットエラーです。");
-            throw new IllegalArgumentException("日付フォーマットが正しくありません。MM/DD,MMDD,MM月DD日のいづれかの形式で指定してください。", e);
+            throw new IllegalArgumentException("日付が正しくありません。MM/DD,MM月DD日どちらかの形式で指定してください。", e);
         }
+
+        // ここに到達した場合は日付指定がないので、今日の日付を設定する
+        requestModel.setTargetDate(LocalDate.now().format(RequestTextConstants.UUUUMMDD_FORMAT));
 
         return false;
     }
 
+    /**
+     * 引数をもとに、取得対象の日を算出する
+     * <p>
+     * 引数の月日が今年かつ未来なら今年の日付、
+     * 今年かつ過去なら来年の日付を返す
+     *
+     * @param month 月
+     * @param day   日
+     * @return 取得対象日付
+     */
     protected LocalDate getTargetDate(int month, int day) {
-        // いったん現在日の年で生成
+        // 一度現在日の年で生成
         LocalDate tmpDate = LocalDate.of(YearMonth.now().getYear(), month, day);
 
         // 生成した日付が現在より過去の場合、1年後の日付を返却
@@ -150,7 +165,6 @@ public class ThemeParkInformationResponseService {
 
         // 現在と同じもしくは未来の場合、生成した日付で返却
         return tmpDate;
-
     }
 
     /**
@@ -166,4 +180,23 @@ public class ThemeParkInformationResponseService {
         return targetDate.getYear() + "年" + targetDate.getMonthValue() + "月" + targetDate.getDayOfMonth() + "日";
 
     }
+
+    /**
+     * 第一引数の文字列に、第二引数のリストに定義された文字列が含まれるかチェックする
+     *
+     * @param requestText リクエストテキスト
+     * @param keySet      キーワードになる文字列のリスト
+     * @return リストの文字列が含まれていればtrue, なければfalse
+     */
+    private boolean isContains(String requestText, List<String> keySet) {
+        // 海判定
+        for (String text : keySet) {
+            if (requestText.contains(text)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
