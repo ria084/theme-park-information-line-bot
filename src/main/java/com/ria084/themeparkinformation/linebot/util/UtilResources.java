@@ -2,13 +2,12 @@ package com.ria084.themeparkinformation.linebot.util;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 @Component
 @AllArgsConstructor
@@ -17,7 +16,7 @@ public class UtilResources {
 
     public static String getOpeningHours(boolean isLand, boolean isSea) throws IOException {
 
-        StringBuilder filePath = new StringBuilder().append("data/openinghours/");
+        StringBuilder filePath = new StringBuilder().append("classpath:data/openinghours/");
 
         if (isLand) {
             filePath.append("LAND.json");
@@ -28,8 +27,7 @@ public class UtilResources {
             filePath.append("LAND.json");
         }
 
-        String resource = new ClassPathResource(new String(filePath)).getFile().getPath();
-        return Files.readString(Path.of(resource), StandardCharsets.UTF_8);
+        return Files.readString(ResourceUtils.getFile(filePath.toString()).toPath(), StandardCharsets.UTF_8);
 
     }
 }

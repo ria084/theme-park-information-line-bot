@@ -65,6 +65,10 @@ public class ThemeParkInformationResponseService {
 
         ResponseModel.Detail timeDetail = response.get(requestModel.getTargetDate());
 
+        if (timeDetail == null) {
+            return new TextMessage(getStringTargetDate(requestModel.getTargetDate()) + "の運営情報はありません。別の日を指定してください");
+        }
+
         // 備考欄が空なら通常通り開園/閉園時刻を通知
         if (timeDetail.getNote().isEmpty()) {
             return new TextMessage(String.format(RequestTextConstants.NORMAL_OPERATION, getStringTargetDate(requestModel.getTargetDate()), targetPark, timeDetail.getOpenTime(), timeDetail.getCloseTime()));
