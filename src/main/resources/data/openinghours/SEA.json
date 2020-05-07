@@ -1,522 +1,432 @@
-[
-  {
-    "targetDate": "20200427",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200428",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200429",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200430",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200501",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200502",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200503",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200504",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200505",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200506",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "休園"
-    }
-  },
-  {
-    "targetDate": "20200507",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200508",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200509",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200510",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200511",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200512",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200513",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200514",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200515",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200516",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200517",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200518",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200519",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200520",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200521",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200522",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200523",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200524",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200525",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200526",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200527",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200528",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200529",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200530",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200531",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200601",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200602",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200603",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200604",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200605",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200606",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200607",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200608",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200609",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200610",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200611",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200612",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200613",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200614",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200615",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200616",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200617",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200618",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200619",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200620",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200621",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200622",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200623",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200624",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200625",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200626",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200627",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200628",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200629",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
-  },
-  {
-    "targetDate": "20200630",
-    "detail": {
-      "openTime": null,
-      "closeTime": null,
-      "note": "未定"
-    }
+{
+  "20200612": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200611": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200610": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200731": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200730": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200616": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200615": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200614": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200613": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200619": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200618": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200617": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200531": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200530": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200524": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200601": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200722": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200523": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200721": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200522": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200720": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200521": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200528": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200605": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200726": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200527": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200604": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200725": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200526": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200603": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200724": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200525": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200602": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200723": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200609": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200608": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200729": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200607": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200728": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200529": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200606": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200727": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200520": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200513": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200711": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200512": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200710": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200511": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200510": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200517": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200715": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200516": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200714": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200515": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200713": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200514": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200712": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200719": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200718": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200519": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200717": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200518": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200716": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200630": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200623": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200622": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200621": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200620": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200627": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200704": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200626": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200703": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200625": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200702": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200624": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200701": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200708": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200509": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200707": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200508": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200629": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200706": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200507": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "休園"
+  },
+  "20200628": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200705": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
+  },
+  "20200709": {
+    "openTime": null,
+    "closeTime": null,
+    "note": "未定"
   }
-]
+}

@@ -1,14 +1,23 @@
 package com.ria084.themeparkinformation.linebot.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.linecorp.bot.model.message.TextMessage;
 import com.ria084.themeparkinformation.linebot.constants.RequestTextConstants;
+import com.ria084.themeparkinformation.linebot.domain.model.RequestModel;
 import com.ria084.themeparkinformation.linebot.domain.model.ResponseModel;
+import com.ria084.themeparkinformation.linebot.util.UtilResources;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,9 +29,9 @@ import java.util.regex.Pattern;
 @Slf4j
 public class ThemeParkInformationResponseService {
     private final ResponseModel responseModel;
+    private final RequestModel requestModel;
 
     public TextMessage generateResponse(String requestText) {
-
         boolean isLand = false;
         boolean isSea = false;
 
@@ -48,9 +57,25 @@ public class ThemeParkInformationResponseService {
             }
         }
 
-        // TODO テキストの取得
-        String responseText = getStringTargetDate(responseModel.getTargetDate()) + "の情報です";
+        String responseText = "";
+        try {
+            String openingHours = UtilResources.getOpeningHours(false, true);
+            ObjectMapper mapper = new ObjectMapper();
 
+            Map<String, ResponseModel.Detail> response = mapper.readValue(openingHours, new TypeReference<HashMap<String, ResponseModel.Detail>>(){});
+            ResponseModel.Detail timeDetail = response.get(requestModel.getTargetDate());
+
+            // 備考欄が空なら通常通り開園/閉園時刻を通知
+            if (timeDetail.getNote().isEmpty()){
+                responseText = getStringTargetDate(requestModel.getTargetDate()) + "の運営時間は" + timeDetail.getOpenTime() + "～" + timeDetail.getCloseTime() + "です。";
+            } else {
+                // 備考欄の記載があれば、注意事項を送付
+                responseText = getStringTargetDate(requestModel.getTargetDate()) + "は" + timeDetail.getNote() + "です。詳細な情報については公式サイトを確認してください。";
+            }
+        } catch (IOException e) {
+            log.info("err");
+            // TODO 例外処理
+        }
 
         return new TextMessage(responseText);
     }
@@ -60,21 +85,21 @@ public class ThemeParkInformationResponseService {
         // 日付を示す文字列が入っていれば有効
         if (requestText.contains("今日") || requestText.contains("きょう")) {
             // 取得対象日付を今日に設定
-            responseModel.setTargetDate(LocalDate.now().format(RequestTextConstants.UUUUMMDD_FORMAT));
+            requestModel.setTargetDate(LocalDate.now().format(RequestTextConstants.UUUUMMDD_FORMAT));
 
             return true;
         }
 
         if (requestText.contains("明日") || requestText.contains("あした")) {
             // 取得対象日付を明日に設定
-            responseModel.setTargetDate(LocalDate.now().plusDays(1).format(RequestTextConstants.UUUUMMDD_FORMAT));
+            requestModel.setTargetDate(LocalDate.now().plusDays(1).format(RequestTextConstants.UUUUMMDD_FORMAT));
 
             return true;
         }
 
         if (requestText.contains("明後日") || requestText.contains("あさって")) {
             // 取得対象日付を明後日に設定
-            responseModel.setTargetDate(LocalDate.now().plusDays(2).format(RequestTextConstants.UUUUMMDD_FORMAT));
+            requestModel.setTargetDate(LocalDate.now().plusDays(2).format(RequestTextConstants.UUUUMMDD_FORMAT));
 
             return true;
         }
@@ -88,7 +113,7 @@ public class ThemeParkInformationResponseService {
                 int month = Integer.parseInt(withSlash.group(1));
                 int day = Integer.parseInt(withSlash.group(2));
 
-                responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
+                requestModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
                 return true;
             }
 
@@ -99,7 +124,7 @@ public class ThemeParkInformationResponseService {
                 int month = Integer.parseInt(jp.group(1));
                 int day = Integer.parseInt(jp.group(2));
 
-                responseModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
+                requestModel.setTargetDate(getTargetDate(month, day).format(RequestTextConstants.UUUUMMDD_FORMAT));
                 return true;
             }
 
