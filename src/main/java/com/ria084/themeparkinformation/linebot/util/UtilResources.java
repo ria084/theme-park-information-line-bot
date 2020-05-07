@@ -7,9 +7,9 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 @Component
 @AllArgsConstructor
@@ -33,7 +33,6 @@ public class UtilResources {
         Resource resource = resourceLoader.getResource("classpath:" + filePath.toString());
         File file = resource.getFile();
 
-        return Files.readString(file.toPath(), StandardCharsets.UTF_8);
-
+        return new String(new FileInputStream(file).readAllBytes(), StandardCharsets.UTF_8);
     }
 }
