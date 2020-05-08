@@ -1,0 +1,4 @@
+line.bot:
+  channelSecret: test
+  channelToken: test
+  handler.path: /callback
